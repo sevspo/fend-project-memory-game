@@ -12,12 +12,12 @@
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
-    var currentIndex = array.length, temporaryValue, randomIndex;
+    var currentIndex = array.length, temporaryValue, randomIndex; 
 
-    while (currentIndex !== 0) {
-        randomIndex = Math.floor(Math.random() * currentIndex);
+    while (currentIndex !== 0) {  // While there remain elements to shuffle...
+        randomIndex = Math.floor(Math.random() * currentIndex); // Pick a remaining element
         currentIndex -= 1;
-        temporaryValue = array[currentIndex];
+        temporaryValue = array[currentIndex]; // And swap it with the current element.
         array[currentIndex] = array[randomIndex];
         array[randomIndex] = temporaryValue;
     }
