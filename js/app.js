@@ -2,7 +2,12 @@
  * Create a list that holds all of your cards
  */
 const icons = ["fa fa-diamond","fa fa-paper-plane-o","fa fa-anchor","fa fa-bolt","fa fa-cube","fa fa-anchor","fa fa-leaf","fa fa-bicycle","fa fa-diamond","fa fa-paper-plane-o","fa fa-anchor","fa fa-bolt","fa fa-cube","fa fa-anchor","fa fa-leaf","fa fa-bicycle"];
-const playGround = document.querySelector('.deck');
+const playGround = document.querySelector('.deck'); //reference to the deck of cards
+let openCards = []; // array to hold cards that we have opened.
+const moveCounter = document.querySelector('.moves');
+const restartButton = document.querySelector('.restart');
+const scores = document.querySelector('.stars');
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -24,15 +29,33 @@ function shuffle(array) {
     return array;
 }
 
-createCards();
+createCards();// call it to initialize the gameboard.
 
-function createCards(){ // create the cards function
-    for (let i = 0; i < icons.length; i++) {    //looping over the cards
+function createCards(){ // create the cards function.
+    shuffle(icons); // call the shuffle function on the array with icons.
+    for (let i = 0; i < icons.length; i++) {    //looping over the cards.
         const card = document.createElement('li');
         card.classList.add('card');
+        card.innerHTML = `<i class='${icons[i]}'></i>`;
         playGround.appendChild(card);
-    }
+        card.addEventListener('click', click);
+    };
 }
+
+function click(e) {
+    let card = e.target;
+    if (openCards) {
+        
+    } else {
+        
+    }
+
+
+    
+}
+
+
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
