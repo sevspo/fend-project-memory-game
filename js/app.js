@@ -1,9 +1,10 @@
 /*
  * Create a list that holds all of your cards
  */
-const icons = ["fa fa-diamond","fa fa-paper-plane-o","fa fa-anchor","fa fa-bolt","fa fa-cube","fa fa-anchor","fa fa-leaf","fa fa-bicycle","fa fa-diamond","fa fa-paper-plane-o","fa fa-anchor","fa fa-bolt","fa fa-cube","fa fa-anchor","fa fa-leaf","fa fa-bicycle"];
+const icons = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
 const playGround = document.querySelector('.deck'); //reference to the deck of cards
-let openCards = []; // array to hold cards that we have opened.
+let openedCards = []; // array to hold cards that we have opened.
+let matchingCards = []; // array to hold cards that match.
 const moveCounter = document.querySelector('.moves');
 const restartButton = document.querySelector('.restart');
 const scores = document.querySelector('.stars');
@@ -33,6 +34,7 @@ createCards();// call it to initialize the gameboard.
 
 function createCards(){ // create the cards function.
     shuffle(icons); // call the shuffle function on the array with icons.
+    
     for (let i = 0; i < icons.length; i++) {    //looping over the cards.
         const card = document.createElement('li');
         card.classList.add('card');
@@ -44,14 +46,45 @@ function createCards(){ // create the cards function.
 
 function click(e) {
     let card = e.target;
-    if (openCards) {
+    let previousCard = openedCards[0];
+
+    if (openedCards.length === 1) { //we have an open card
         
-    } else {
-        
-    }
+        card.classList.add('open', 'show');
+        playGround.classList.add('disable');
+        setTimeout(() => {
+            playGround.classList.remove('disable');
+        }, 1000);
+
+        if (card.innerHTML === previousCard.innerHTML) { //the cards match
+            
+            card.classList.add('match');
+            previousCard.classList.add('match');
+            matchingCards.push(card, previousCard);
+            openedCards = [];
+            console.log(matchingCards.length);
+
+            if (matchingCards.lenght === icons.length) {
+                gameOver;
+            }
+
+        } else { // the cards don't match
+
+            openedCards = [];
+            setTimeout(() => {
+                card.classList.remove('open', 'show');
+                previousCard.classList.remove('open', 'show');
+            }, 1000);
+        }
 
 
-    
+    } else { // we don't have an open card
+        card.classList.add('open', 'show');
+        openedCards.push(card);
+    } 
+}
+function gameOver() {
+    alert('Game Over');
 }
 
 
