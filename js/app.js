@@ -7,7 +7,7 @@ let openedCards = []; // array to hold cards that we have opened.
 let matchingCards = []; // array to hold cards that match.
 const moveCounter = document.querySelector('.moves');
 const restartButton = document.querySelector('.restart');
-const scores = document.querySelector('.stars');
+const scoresPanel = document.querySelector('.stars');
 
 /*
  * Display the cards on the page
@@ -44,17 +44,17 @@ function createCards(){ // create the cards function.
     };
 }
 
-function click(e) {
+function click(e) { // the click function with the main functionality of the game.
     let card = e.target;
     let previousCard = openedCards[0];
 
     if (openedCards.length === 1) { //we have an open card
         
-        addMove();
+        addMove(); // call the the addMove Function. Here is the right place, because 2 draws count as one move.
 
-        card.classList.add('open', 'show');
-        playGround.classList.add('disable');
-        setTimeout(() => {
+        card.classList.add('open', 'show', 'disable');
+        playGround.classList.add('disable'); // this disables all cards for contiunous clicks before the move as ended.
+        setTimeout(() => { // this enables input again after the cards are covered up again and the player can make the next move
             playGround.classList.remove('disable');
         }, 1000);
 
@@ -66,34 +66,45 @@ function click(e) {
             openedCards = [];
             console.log(matchingCards.length);
 
-            gameOver();
+            if (matchingCards.length === icons.length) { // checking wether we have matched all cards
+                gameOver();
+            }
             
         } else { // the cards don't match
         
         openedCards = [];
         setTimeout(() => {
-            card.classList.remove('open', 'show');
-            previousCard.classList.remove('open', 'show');
+            card.classList.remove('open', 'show', 'disable');
+            previousCard.classList.remove('open', 'show', 'disable');
         }, 1000);
     }
     
     
 } else { // we don't have an open card
-card.classList.add('open', 'show');
+card.classList.add('open', 'show', 'disable');
 openedCards.push(card);
 } 
 }
-function gameOver() {
-    if (matchingCards.length === icons.length) {
-        alert('Game Over');
-    }
+
+function gameOver() { // When the Game is over
+    alert('Game Over');
 }
 
 let moves = 0;
 moveCounter.textContent = 0;
-function addMove() {
+function addMove() { // increse the movecounter and set the score
     moves++;
     moveCounter.textContent = moves;
+    const stars = scoresPanel.firstElementChild; // get a reference to the child element of the Score Panel, the Stars.
+    if (moves === 10) {
+        scoresPanel.removeChild(stars); // remove a star
+    }
+    if (moves === 15) {
+        scoresPanel.removeChild(stars);
+    }
+    if (moves === 20) {
+        scoresPanel.removeChild(stars);
+    }
 }
 
 /*
