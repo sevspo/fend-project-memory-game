@@ -50,6 +50,8 @@ function click(e) {
 
     if (openedCards.length === 1) { //we have an open card
         
+        addMove();
+
         card.classList.add('open', 'show');
         playGround.classList.add('disable');
         setTimeout(() => {
@@ -64,31 +66,35 @@ function click(e) {
             openedCards = [];
             console.log(matchingCards.length);
 
-            if (matchingCards.lenght === icons.length) {
-                gameOver;
-            }
-
+            gameOver();
+            
         } else { // the cards don't match
-
-            openedCards = [];
-            setTimeout(() => {
-                card.classList.remove('open', 'show');
-                previousCard.classList.remove('open', 'show');
-            }, 1000);
-        }
-
-
-    } else { // we don't have an open card
-        card.classList.add('open', 'show');
-        openedCards.push(card);
-    } 
+        
+        openedCards = [];
+        setTimeout(() => {
+            card.classList.remove('open', 'show');
+            previousCard.classList.remove('open', 'show');
+        }, 1000);
+    }
+    
+    
+} else { // we don't have an open card
+card.classList.add('open', 'show');
+openedCards.push(card);
+} 
 }
 function gameOver() {
-    alert('Game Over');
+    if (matchingCards.length === icons.length) {
+        alert('Game Over');
+    }
 }
 
-
-
+let moves = 0;
+moveCounter.textContent = 0;
+function addMove() {
+    moves++;
+    moveCounter.textContent = moves;
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
