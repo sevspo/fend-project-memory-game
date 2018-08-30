@@ -33,6 +33,7 @@ function shuffle(array) {
 createCards();// call it to initialize the gameboard.
 
 function createCards(){ // create the cards function.
+    
     shuffle(icons); // call the shuffle function on the array with icons.
     
     for (let i = 0; i < icons.length; i++) {    //looping over the cards.
@@ -47,25 +48,24 @@ function createCards(){ // create the cards function.
 function click(e) { // the click function with the main functionality of the game.
     let card = e.target;
     let previousCard = openedCards[0];
-
+    
     if (openedCards.length === 1) { //we have an open card
         
         addMove(); // call the the addMove Function. Here is the right place, because 2 draws count as one move.
-
+        
         card.classList.add('open', 'show', 'disable');
         playGround.classList.add('disable'); // this disables all cards for contiunous clicks before the move as ended.
         setTimeout(() => { // this enables input again after the cards are covered up again and the player can make the next move
             playGround.classList.remove('disable');
         }, 1000);
-
+        
         if (card.innerHTML === previousCard.innerHTML) { //the cards match
             
             card.classList.add('match');
             previousCard.classList.add('match');
             matchingCards.push(card, previousCard);
             openedCards = [];
-            console.log(matchingCards.length);
-
+            
             if (matchingCards.length === icons.length) { // checking wether we have matched all cards
                 gameOver();
             }
@@ -87,33 +87,43 @@ openedCards.push(card);
 }
 
 function gameOver() { // When the Game is over
-    alert('Game Over');
+    alert(`GAME OVER!
+    You beat the Game with ${moves} Moves.
+    That gives you a rating of ${numberOfStars} Stars.
+    Thank you!`); // this is the game over message.
 }
 
+let numberOfStars = 3;
 let moves = 0;
 moveCounter.textContent = 0;
 function addMove() { // increse the movecounter and set the score
     moves++;
     moveCounter.textContent = moves;
     const stars = scoresPanel.firstElementChild; // get a reference to the child element of the Score Panel, the Stars.
-    if (moves === 10) {
+    if (moves === 13) {
         scoresPanel.removeChild(stars); // remove a star
+        numberOfStars = 2;
     }
-    if (moves === 15) {
+    if (moves === 18) {
         scoresPanel.removeChild(stars);
+        numberOfStars = 1;
     }
-    if (moves === 20) {
+    if (moves === 25) {
         scoresPanel.removeChild(stars);
+        numberOfStars = 0;
     }
 }
 
+restartButton.addEventListener('click', function() { // the reset funcionality the easy way!
+location.reload();
+})
 /*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
+* set up the event listener for a card. If a card is clicked:
+*  - display the card's symbol (put this functionality in another function that you call from this one)
+*  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
+*  - if the list already has another card, check to see if the two cards match
+*    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
+*    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
+*    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
+*    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+*/
