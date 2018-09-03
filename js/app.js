@@ -1,6 +1,7 @@
 /*
  * Create a list that holds all of your cards
  */
+// the array that holds the cards.
 const icons = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
 const playGround = document.querySelector('.deck'); //reference to the deck of cards
 let openedCards = []; // array to hold cards that we have opened.
@@ -67,7 +68,9 @@ function click(e) { // the click function with the main functionality of the gam
             openedCards = [];
             
             if (matchingCards.length === icons.length) { // checking wether we have matched all cards
-                gameOver();
+                setTimeout(() => {
+                    gameOver();    
+                }, 500);
             }
             
         } else { // the cards don't match
