@@ -1,20 +1,23 @@
 # Memory Game Project
+This is a simple memory game which I have programmed as part of the Udacity Frontend Nanodegree.
 
 ## Table of Contents
 
-* [Instructions](#instructions)
+* [How to play](#How-to-play)
+* [Instructions](#Instructions-for-students)
 * [Contributing](#contributing)
 
-## Instructions
+## How to play
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+To play the game clone or download the project and open it in your borwser. 
 
-To get started, open `js/app.js` and start building out the app's functionality
+## Instructions for students
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+The starter project had some HTML and CSS styling to display a static version of the Memory Game project. We had to convert this project from a static project to an interactive one. This required modifying the HTML and CSS files, but primarily the JavaScript file.
+There are no dependencies in this project and it was written in pure JS.
 
-## Contributing
+## Contributing 
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+Feel free to contribute to my version of the memory game.
 
 For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
