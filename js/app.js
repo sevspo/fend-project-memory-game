@@ -95,11 +95,12 @@ openedCards.push(card);
 }
 
 function gameOver() { // When the Game is over
+    stopTimer();
     alert(`GAME OVER!
     You beat the Game with ${moves} Moves.
     That gives you a rating of ${numberOfStars} Stars.
     Your time: ${h} hours, ${m} minutes and ${s} seconds.
-    Thank you!`); // this is the game over message.
+    Would you like to play again?`); // this is the game over message.
 }
 
 let numberOfStars = 3;
@@ -127,7 +128,7 @@ restartButton.addEventListener('click', function() { // the reset funcionality t
 location.reload();
 })
 
-setInterval(stopwatch, 1000);
+let setTimer = setInterval(stopwatch, 1000);
 timer.textContent = '0:0:0';
 function stopwatch() {
     time++;
@@ -135,6 +136,10 @@ function stopwatch() {
     m = Math.floor((time - h * 3600) / 60);
     s = time - (h * 3600  + m * 60);
     timer.textContent = `${h}:${m}:${s}`;
+}
+
+function stopTimer() {
+    clearInterval(setTimer);
 }
 
 /*
