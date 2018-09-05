@@ -9,6 +9,11 @@ let matchingCards = []; // array to hold cards that match.
 const moveCounter = document.querySelector('.moves');
 const restartButton = document.querySelector('.restart');
 const scoresPanel = document.querySelector('.stars');
+const timer = document.querySelector('.timer');
+let time = 0;
+let h = 0;
+let m = 0;
+let s = 0;
 
 /*
  * Display the cards on the page
@@ -93,6 +98,7 @@ function gameOver() { // When the Game is over
     alert(`GAME OVER!
     You beat the Game with ${moves} Moves.
     That gives you a rating of ${numberOfStars} Stars.
+    Your time: ${h} hours, ${m} minutes and ${s} seconds.
     Thank you!`); // this is the game over message.
 }
 
@@ -120,6 +126,17 @@ function addMove() { // increse the movecounter and set the score
 restartButton.addEventListener('click', function() { // the reset funcionality the easy way!
 location.reload();
 })
+
+setInterval(stopwatch, 1000);
+timer.textContent = '0:0:0';
+function stopwatch() {
+    time++;
+    h = Math.floor(time / 3600);
+    m = Math.floor((time - h * 3600) / 60);
+    s = time - (h * 3600  + m * 60);
+    timer.textContent = `${h}:${m}:${s}`;
+}
+
 /*
 * set up the event listener for a card. If a card is clicked:
 *  - display the card's symbol (put this functionality in another function that you call from this one)
