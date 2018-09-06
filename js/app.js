@@ -1,8 +1,9 @@
 /*
  * Create a list that holds all of your cards
  */
-// the array that holds the cards.
-const icons = ["fa fa-diamond", "fa fa-diamond", "fa fa-paper-plane-o", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-anchor", "fa fa-bolt", "fa fa-bolt", "fa fa-cube", "fa fa-cube", "fa fa-leaf", "fa fa-leaf", "fa fa-bicycle", "fa fa-bicycle", "fa fa-bomb", "fa fa-bomb"];
+// the array that holds the cards. 
+const icons = ["fa fa-diamond", "fa fa-paper-plane-o", "fa fa-anchor", "fa fa-bolt", "fa fa-cube", "fa fa-leaf", "fa fa-bicycle", "fa fa-bomb",];
+const doubleIcons = icons.concat(icons);
 const playGround = document.querySelector('.deck'); //reference to the deck of cards
 let openedCards = []; // array to hold cards that we have opened.
 let matchingCards = []; // array to hold cards that match.
@@ -40,12 +41,12 @@ createCards();// call it to initialize the gameboard.
 
 function createCards(){ // create the cards function.
     
-    shuffle(icons); // call the shuffle function on the array with icons.
+    shuffle(doubleIcons); // call the shuffle function on the array with icons.
     
-    for (let i = 0; i < icons.length; i++) {    //looping over the cards.
+    for (let i = 0; i < doubleIcons.length; i++) {    //looping over the cards.
         const card = document.createElement('li');
         card.classList.add('card');
-        card.innerHTML = `<i class='${icons[i]}'></i>`;
+        card.innerHTML = `<i class='${doubleIcons[i]}'></i>`;
         playGround.appendChild(card);
         card.addEventListener('click', click);
     };
@@ -72,7 +73,7 @@ function click(e) { // the click function with the main functionality of the gam
             matchingCards.push(card, previousCard);
             openedCards = [];
             
-            if (matchingCards.length === icons.length) { // checking wether we have matched all cards
+            if (matchingCards.length === doubleIcons.length) { // checking wether we have matched all cards
                 setTimeout(() => {
                     gameOver();    
                 }, 500);
