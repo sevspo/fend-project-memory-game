@@ -122,6 +122,7 @@ function addMove() { // increse the movecounter and set the score
 }
 
 restartButton.addEventListener('click', function() { // the reset funcionality the easy way!
+    stopTimer();
     playGround.innerHTML = '';
     matchingCards = [];
     moves = 0;
@@ -132,7 +133,7 @@ restartButton.addEventListener('click', function() { // the reset funcionality t
     moveCounter.textContent = 0;
     scoresPanel.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>'
     createCards();
-    stopwatch();
+    setTimer = setInterval(stopwatch, 1000);
 })
 
 let setTimer = setInterval(stopwatch, 1000);
