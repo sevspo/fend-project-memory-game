@@ -98,8 +98,8 @@ openedCards.push(card);
 function gameOver() { // When the Game is over
     stopTimer();
     alert(`GAME OVER!
-    You beat the Game with ${moves} Moves.
-    That gives you a rating of ${numberOfStars} Stars.
+    You beat the game im ${moves} moves.
+    That gives you a rating of ${numberOfStars} stars.
     Your time: ${h} hours, ${m} minutes and ${s} seconds.
     Would you like to play again?`); // this is the game over message.
 }
@@ -122,7 +122,17 @@ function addMove() { // increse the movecounter and set the score
 }
 
 restartButton.addEventListener('click', function() { // the reset funcionality the easy way!
-location.reload();
+    playGround.innerHTML = '';
+    matchingCards = [];
+    moves = 0;
+    time = 0;
+    h = 0;
+    m = 0;
+    s = 0;
+    moveCounter.textContent = 0;
+    scoresPanel.innerHTML = '<li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li><li><i class="fa fa-star"></i></li>'
+    createCards();
+    stopwatch();
 })
 
 let setTimer = setInterval(stopwatch, 1000);
