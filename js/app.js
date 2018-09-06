@@ -111,17 +111,13 @@ function addMove() { // increse the movecounter and set the score
     moves++;
     moveCounter.textContent = moves;
     const stars = scoresPanel.firstElementChild; // get a reference to the child element of the Score Panel, the Stars.
-    if (moves === 13) {
+    if (moves === 15) {
         scoresPanel.removeChild(stars); // remove a star
         numberOfStars = 2;
     }
-    if (moves === 18) {
+    if (moves === 20) {
         scoresPanel.removeChild(stars);
         numberOfStars = 1;
-    }
-    if (moves === 25) {
-        scoresPanel.removeChild(stars);
-        numberOfStars = 0;
     }
 }
 
