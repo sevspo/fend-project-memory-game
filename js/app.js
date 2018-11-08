@@ -80,19 +80,16 @@ function click(e) { // the click function with the main functionality of the gam
             }
             
         } else { // the cards don't match
-        
         openedCards = [];
         setTimeout(() => {
             card.classList.remove('open', 'show', 'disable');
             previousCard.classList.remove('open', 'show', 'disable');
-        }, 1000);
-    }
-    
-    
-} else { // we don't have an open card
-card.classList.add('open', 'show', 'disable');
-openedCards.push(card);
-} 
+            }, 1000);
+        }
+    } else { // we don't have an open card
+    card.classList.add('open', 'show', 'disable');
+    openedCards.push(card);
+    } 
 }
 
 function gameOver() { // When the Game is over
